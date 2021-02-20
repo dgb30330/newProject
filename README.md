@@ -2,6 +2,7 @@
 Set up for new Code Path project
 
 Lab work from session 2:
+
 Create a README in your GitHub repository and paste in the contents of this Lab 1 README Template -[x]
 
 In the README, mark off all the features you implemented, using the following syntax-[x] -[x]
