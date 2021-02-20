@@ -5,10 +5,13 @@
     android:id="@+id/parent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/orange"
     tools:context=".MainActivity">
+
 
     <TextView
         android:id="@+id/flashcard_q"
+        android:textColor="@color/white"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:text="What is the answer to this question?"
@@ -18,11 +21,12 @@
     <TextView
         android:id="@+id/flashcard_a"
         android:layout_width="match_parent"
+        android:textColor="@color/white"
         android:layout_height="200dp"
         android:text="You know."
         android:textSize="40sp"
         android:gravity="center"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@id/flashcard_q"
         android:visibility="gone"
         />
 
