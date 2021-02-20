@@ -11,23 +11,83 @@
 
     <TextView
         android:id="@+id/flashcard_q"
+        android:background="@drawable/card_background"
+        android:elevation="10dp"
         android:textColor="@color/white"
+        android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:text="What is the answer to this question?"
+        android:text="What is the population of Palm Beach County?"
         android:textSize="40sp"
         android:gravity="center"
         />
     <TextView
-        android:id="@+id/flashcard_a"
+        android:id="@+id/flashcard_a1"
+        android:background="@drawable/answer_card"
+        android:elevation="10dp"
         android:layout_width="match_parent"
         android:textColor="@color/white"
-        android:layout_height="200dp"
-        android:text="You know."
+        android:layout_height="70dp"
+        android:layout_margin="10dp"
+        android:text="750,000"
         android:textSize="40sp"
         android:gravity="center"
+        android:visibility="invisible"
         android:layout_below="@id/flashcard_q"
-        android:visibility="gone"
         />
+    <TextView
+        android:id="@+id/flashcard_a2"
+        android:background="@drawable/answer_card"
+        android:elevation="10dp"
+        android:layout_width="match_parent"
+        android:textColor="@color/white"
+        android:layout_height="70dp"
+        android:layout_margin="10dp"
+        android:text="1,000,000"
+        android:textSize="40sp"
+        android:gravity="center"
+        android:visibility="invisible"
+        android:layout_below="@id/flashcard_a1"
+        />
+    <TextView
+        android:id="@+id/flashcard_a3"
+        android:background="@drawable/answer_card"
+        android:elevation="10dp"
+        android:layout_width="match_parent"
+        android:textColor="@color/white"
+        android:layout_height="70dp"
+        android:layout_margin="10dp"
+        android:text="1,500,000"
+        android:textSize="40sp"
+        android:gravity="center"
+        android:visibility="invisible"
+        android:layout_below="@id/flashcard_a2"
+        />
+    <TextView
+        android:id="@+id/flashcard_a4"
+        android:background="@drawable/answer_card"
+        android:elevation="10dp"
+        android:layout_width="match_parent"
+        android:textColor="@color/white"
+        android:layout_height="70dp"
+        android:layout_margin="10dp"
+        android:text="2,000,000"
+        android:textSize="40sp"
+        android:gravity="center"
+        android:visibility="invisible"
+        android:layout_below="@id/flashcard_a3"
+        />
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:id="@+id/visible_icon"
+        android:elevation="10dp"
+        android:src="@drawable/visible_yes"
+        android:layout_margin="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+
+        />
+
 
 </RelativeLayout>
