@@ -19,7 +19,7 @@ Optional Tasks
 5. Change the background color of the multiple choice answers when clicked to indicate whether the question was answered correctly -[x]
 6. Add a button that will toggle hiding and showing the answer choices -[x]
 
-![Flash Card Demo](flashApp2.gif)
+<img src="flashApp2.gif" width=200><br>
 
 ## Lab 2
 
