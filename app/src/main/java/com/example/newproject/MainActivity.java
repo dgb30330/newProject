@@ -141,6 +141,7 @@ public class MainActivity extends AppCompatActivity {
                 TextView a2 = findViewById(R.id.flashcard_a2);
                 TextView a3 = findViewById(R.id.flashcard_a3);
                 TextView a4 = findViewById(R.id.flashcard_a4);
+                ImageView icon = findViewById(R.id.visible_icon);
 
                 //changes made
                 q.setText(newQ);
@@ -155,6 +156,7 @@ public class MainActivity extends AppCompatActivity {
                 a2.setVisibility(View.INVISIBLE);
                 a3.setVisibility(View.INVISIBLE);
                 a4.setVisibility(View.INVISIBLE);
+                icon.setImageResource(R.drawable.visible_yes);
 
                 Snackbar.make(findViewById(R.id.parent), "New card created!", Snackbar.LENGTH_INDEFINITE).setDuration(1200).show();
 
