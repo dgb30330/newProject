@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/orange"
+    tools:context=".AddCardActivity">
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:id="@+id/cancel_icon"
+        android:elevation="10dp"
+        android:src="@drawable/ic_baseline_remove_circle_24"
+        android:layout_margin="10dp"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentBottom="true"
+
+        />
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:id="@+id/save"
+        android:elevation="10dp"
+        android:src="@drawable/ic_baseline_save_24"
+        android:layout_margin="10dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+
+        />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/new_question"
+        android:hint="Enter new question."
+        android:textColorHint="@color/orange_dark"
+        android:textColor="@color/white"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/new_answer"
+        android:layout_below="@id/new_question"
+        android:hint="Enter new answer."
+        android:textColorHint="@color/orange_dark"
+        android:textColor="@color/white"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/new_wrong1"
+        android:layout_below="@id/new_answer"
+        android:hint="Enter an incorrect answer."
+        android:textColorHint="@color/orange_dark"
+        android:textColor="@color/white"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/new_wrong2"
+        android:layout_below="@id/new_wrong1"
+        android:hint="Enter an incorrect answer."
+        android:textColorHint="@color/orange_dark"
+        android:textColor="@color/white"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:id="@+id/new_wrong3"
+        android:layout_below="@id/new_wrong2"
+        android:hint="Enter an incorrect answer."
+        android:textColorHint="@color/orange_dark"
+        android:textColor="@color/white"
+        />
+
+</RelativeLayout>

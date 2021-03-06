@@ -18,6 +18,7 @@
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:text="What is the population of Palm Beach County?"
+        android:tag="original"
         android:textSize="40sp"
         android:gravity="center"
         />
@@ -85,6 +86,30 @@
         android:src="@drawable/visible_yes"
         android:layout_margin="10dp"
         android:layout_centerHorizontal="true"
+        android:layout_alignParentBottom="true"
+
+        />
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:id="@+id/new_activity"
+        android:elevation="10dp"
+        android:src="@drawable/ic_baseline_add_circle_24"
+        android:layout_margin="10dp"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentBottom="true"
+
+        />
+
+    <ImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:id="@+id/edit_activity"
+        android:elevation="10dp"
+        android:src="@drawable/ic_baseline_edit_24"
+        android:layout_margin="10dp"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentBottom="true"
 
         />
