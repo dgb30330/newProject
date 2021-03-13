@@ -52,7 +52,7 @@ App now works with a local database for persisting data
 ## App Walk-through
 
 <img src="appWeek5.gif" width=200><br>
-and deletion
+and deletion<br>
 <img src="appWeek5delete.gif" width=200><br>
 
 ## Required
