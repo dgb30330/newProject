@@ -22,6 +22,7 @@ public class AddCardActivity extends AppCompatActivity {
         String w1 = getIntent().getExtras().getString("wrong1");
         String w2 = getIntent().getExtras().getString("wrong2");
         String w3 = getIntent().getExtras().getString("wrong3");
+        boolean editStatus = getIntent().getExtras().getBoolean("editStatus");
 
         if(!(preQ.equals("none"))){
             EditText qEntry = findViewById(R.id.new_question);
@@ -74,6 +75,7 @@ public class AddCardActivity extends AppCompatActivity {
                     changeMain.putExtra("newW1", newW1);
                     changeMain.putExtra("newW2", newW2);
                     changeMain.putExtra("newW3", newW3);
+                    changeMain.putExtra("editReturn",editStatus);
                     setResult(RESULT_OK, changeMain);
                     finish();
                 }
