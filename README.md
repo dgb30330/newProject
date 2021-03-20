@@ -54,6 +54,8 @@ App now works with a local database for persisting data
 <img src="appWeek5.gif" width=200><br>
 and deletion<br>
 <img src="appWeek5delete.gif" width=200><br>
+and to demonstrate persistence<br>
+<img src="dataPersist.gif" width=200><br>
 
 ## Required
 - [x] User can create a card and still see their created card when the app is relaunched.
