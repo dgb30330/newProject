@@ -66,3 +66,25 @@ and to demonstrate persistence<br>
 - [x] Flashcards are shown in random order instead of the order they were created in
 - [x] User can edit a card and see the edit saved when they browse through their deck of cards
 - [x] User can create flashcards with multiple answers and be able to browse through cards with multiple choice answers shown
+
+## Lab 4
+
+### App Description
+Animations added throughout. Added transitions to and from second activity. Used reveal for when answers are displayed. 
+Question card slides off, then back on with new message. Countdown timer added. Card flip occurs on answers when next is selected.
+Confetti on correct answer. Extras include color change on countdown timer depending on correct/incorrect, bottom entry exit of answers.
+
+### App Walk-though
+
+<img src="animationHappens.gif" width=200><br>
+
+## Required
+- [x] User sees a transition animation when going from the main screen to the add card screen.
+- [x] User sees a reveal animation when the flashcard is tapped and the answer is shown
+- [x] User sees flashcards animating in / out when the 'next' button is tapped
+
+## Optional
+- [x] Extra styling is added!
+- [x] User sees a countdown timer for each question
+- [x] User sees a 'card flip' animation when the card is tapped
+- [x] User sees a celebration animation with confetti when they answer a question correctly
