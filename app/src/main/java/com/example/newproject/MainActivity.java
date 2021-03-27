@@ -1,16 +1,26 @@
 package com.example.newproject;
 
+import androidx.annotation.AnimRes;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.animation.Animator;
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.view.View;
+import android.view.ViewAnimationUtils;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.google.android.material.snackbar.Snackbar;
+import com.plattysoft.leonids.ParticleSystem;
 
 import java.util.List;
 
@@ -57,63 +67,241 @@ public class MainActivity extends AppCompatActivity {
         ImageView next = findViewById(R.id.next_button);
         ImageView delete = findViewById(R.id.delete_button);
 
-        Intent nextActivity = new Intent(MainActivity.this,AddCardActivity.class);
+        a1.setCameraDistance(20000);
+        a2.setCameraDistance(20000);
+        a3.setCameraDistance(20000);
+        a4.setCameraDistance(20000);
+
         final boolean[] answerVisible = {false};
+        final boolean[] answered = {false};
+
+        CountDownTimer countDownTimer;
+        countDownTimer = new CountDownTimer(16000, 1000) {
+            public void onTick(long millisUntilFinished) {
+                ((TextView) findViewById(R.id.timer)).setText("" + millisUntilFinished / 1000);
+            }
+
+            public void onFinish() {
+            }
+        };
+        countDownTimer.start();
+
+        final Animation dropOff = AnimationUtils.loadAnimation(this,R.anim.drop_off);
+        final Animation bringUp = AnimationUtils.loadAnimation(this,R.anim.bring_up);
+        final Animation slideLeft= AnimationUtils.loadAnimation(this,R.anim.slide_left);
+        final Animation slideInLeft = AnimationUtils.loadAnimation(this,R.anim.slide_in_left);
+        dropOff.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                // this method is called when the animation first starts
+            }
+
+            @Override
+             public void onAnimationEnd(Animation animation) {
+                 a1.setBackground(getResources().getDrawable(R.drawable.answer_card));
+                 a2.setBackground(getResources().getDrawable(R.drawable.answer_card));
+                 a3.setBackground(getResources().getDrawable(R.drawable.answer_card));
+                 a4.setBackground(getResources().getDrawable(R.drawable.answer_card));
+             }
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+                // we don't need to worry about this method
+            }
+         });
+        slideLeft.setAnimationListener(new Animation.AnimationListener() {
+            @Override
+            public void onAnimationStart(Animation animation) {
+                // this method is called when the animation first starts
+            }
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                q.setText(currentCard.getQuestion());
+
+                a1.setText(currentCard.getWrongAnswer1());
+                a2.setText(currentCard.getWrongAnswer2());
+                a3.setText(currentCard.getAnswer());
+                a4.setText(currentCard.getWrongAnswer3());
+                q.startAnimation(slideInLeft);
+                if(answered[0]){
+                    a1.setBackground(getResources().getDrawable(R.drawable.answer_card));
+                    a2.setBackground(getResources().getDrawable(R.drawable.answer_card));
+                    a3.setBackground(getResources().getDrawable(R.drawable.answer_card));
+                    a4.setBackground(getResources().getDrawable(R.drawable.answer_card));
+                }
+                if(answerVisible[0]){
+                    if(a1.getVisibility() == View.VISIBLE){
+                        a1.setRotationY(-90);
+                        a1.animate()
+                            .rotationY(0)
+                            .setDuration(200)
+                            .start();}
+                    else{
+                        a1.setVisibility(View.VISIBLE);
+                        a1.setRotationY(-90);
+                        a1.animate()
+                            .rotationY(0)
+                            .setDuration(200)
+                            .start();
+                    }
+                    if(a2.getVisibility() == View.VISIBLE){
+                        a2.setRotationY(-90);
+                        a2.animate()
+                                .rotationY(0)
+                                .setDuration(200)
+                                .start();}
+                    else{
+                        a2.setVisibility(View.VISIBLE);
+                        a2.setRotationY(-90);
+                        a2.animate()
+                                .rotationY(0)
+                                .setDuration(200)
+                                .start();
+                    }
+                    if(a3.getVisibility() == View.VISIBLE){
+                        a3.setRotationY(-90);
+                        a3.animate()
+                                .rotationY(0)
+                                .setDuration(200)
+                                .start();}
+                    else{
+                        a3.setVisibility(View.VISIBLE);
+                        a3.setRotationY(-90);
+                        a3.animate()
+                                .rotationY(0)
+                                .setDuration(200)
+                                .start();
+                    }
+                    if(a4.getVisibility() == View.VISIBLE){
+                        a4.setRotationY(-90);
+                        a4.animate()
+                                .rotationY(0)
+                                .setDuration(200)
+                                .start();}
+                    else{
+                        a4.setVisibility(View.VISIBLE);
+                        a4.setRotationY(-90);
+                        a4.animate()
+                                .rotationY(0)
+                                .setDuration(200)
+                                .start();
+                    }
+
+                }
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation animation) {
+                // we don't need to worry about this method
+            }
+        });
+
+        Intent nextActivity = new Intent(MainActivity.this,AddCardActivity.class);
 
         a1.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceAsColor")
             @Override
             public void onClick(View v) {
                 a1.setBackground(getResources().getDrawable(R.drawable.card_background));
                 a2.setVisibility(View.INVISIBLE);
                 a4.setVisibility(View.INVISIBLE);
+                answered[0] = true;
+                ((TextView) findViewById(R.id.timer)).setTextColor(getResources().getColor(R.color.orange_dark));
+                countDownTimer.cancel();
             }
         });
         a2.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceAsColor")
             @Override
             public void onClick(View v) {
                 a2.setBackground(getResources().getDrawable(R.drawable.card_background));
                 a1.setVisibility(View.INVISIBLE);
                 a4.setVisibility(View.INVISIBLE);
+                answered[0] = true;
+                ((TextView) findViewById(R.id.timer)).setTextColor(getResources().getColor(R.color.orange_dark));
+                countDownTimer.cancel();
             }
         });
         a3.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceAsColor")
             @Override
             public void onClick(View v) {
                 a1.setVisibility(View.INVISIBLE);
                 a2.setVisibility(View.INVISIBLE);
                 a4.setVisibility(View.INVISIBLE);
+                new ParticleSystem(MainActivity.this, 100, R.drawable.pc, 3000)
+                        .setSpeedRange(0.2f, 0.6f)
+                        .oneShot(a3, 100);
+                answered[0] = true;
+                ((TextView) findViewById(R.id.timer)).setTextColor(getResources().getColor(R.color.blue));
+                countDownTimer.cancel();
             }
         });
         a4.setOnClickListener(new View.OnClickListener() {
+            @SuppressLint("ResourceAsColor")
             @Override
             public void onClick(View v) {
                 a4.setBackground(getResources().getDrawable(R.drawable.card_background));
                 a1.setVisibility(View.INVISIBLE);
                 a2.setVisibility(View.INVISIBLE);
+                answered[0] = true;
+                ((TextView) findViewById(R.id.timer)).setTextColor(getResources().getColor(R.color.orange_dark));
+                countDownTimer.cancel();
             }
         });
         icon.setOnClickListener(new View.OnClickListener() {
+            @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
             @Override
             public void onClick(View v) {
                 if(answerVisible[0]){
+                    if(a1.getVisibility() == View.VISIBLE){
+                        a1.startAnimation(dropOff);}
+                    if(a2.getVisibility() == View.VISIBLE){
+                        a2.startAnimation(dropOff);}
+                    a3.startAnimation(dropOff);
+                    if(a4.getVisibility() == View.VISIBLE){
+                        a4.startAnimation(dropOff);}
                     a1.setVisibility(View.INVISIBLE);
                     a2.setVisibility(View.INVISIBLE);
                     a3.setVisibility(View.INVISIBLE);
                     a4.setVisibility(View.INVISIBLE);
-                    // also resetting backgrounds when hidden
-                    a1.setBackground(getResources().getDrawable(R.drawable.answer_card));
-                    a2.setBackground(getResources().getDrawable(R.drawable.answer_card));
-                    a3.setBackground(getResources().getDrawable(R.drawable.answer_card));
-                    a4.setBackground(getResources().getDrawable(R.drawable.answer_card));
                     icon.setImageResource(R.drawable.visible_yes);
                     answerVisible[0] = false;
                 }
                 else{
+                    if(answered[0]){
+                        ((TextView) findViewById(R.id.timer)).setTextColor(getResources().getColor(R.color.white));
+                        countDownTimer.start();
+                        answered[0] = false;
+                    }
+
+                    int cx = a1.getWidth() / 2;
+                    int cy = a1.getHeight() / 2;
+                    float finalRadius = (float) Math.hypot(cx, cy);
+
+
+                    Animator anim1 = ViewAnimationUtils.createCircularReveal(a1, cx, cy, 0f, finalRadius);
+                    Animator anim2 = ViewAnimationUtils.createCircularReveal(a2, cx, cy, 0f, finalRadius);
+                    Animator anim3 = ViewAnimationUtils.createCircularReveal(a3, cx, cy, 0f, finalRadius);
+                    Animator anim4 = ViewAnimationUtils.createCircularReveal(a4, cx, cy, 0f, finalRadius);
 
                     a1.setVisibility(View.VISIBLE);
                     a2.setVisibility(View.VISIBLE);
                     a3.setVisibility(View.VISIBLE);
                     a4.setVisibility(View.VISIBLE);
+
+                    anim1.setDuration(1200);
+                    anim2.setDuration(1400);
+                    anim3.setDuration(1600);
+                    anim4.setDuration(1800);
+                    a1.startAnimation(bringUp);
+                    a2.startAnimation(bringUp);
+                    a3.startAnimation(bringUp);
+                    a4.startAnimation(bringUp);
+                    anim1.start();
+                    anim2.start();
+                    anim3.start();
+                    anim4.start();
 
                     icon.setImageResource(R.drawable.visible_no);
                     answerVisible[0] = true;
@@ -132,12 +320,18 @@ public class MainActivity extends AppCompatActivity {
                 isEdit = false;
                 nextActivity.putExtra("editStatus",isEdit);
                 MainActivity.this.startActivityForResult(nextActivity, 100);
+                overridePendingTransition(R.anim.slide_in_left,R.anim.slide_left);
+                answered[0] = false;
+
             }
         });
 
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                countDownTimer.cancel();
+                ((TextView) findViewById(R.id.timer)).setTextColor(getResources().getColor(R.color.white));
+                countDownTimer.start();
                 /*
                 currentCardDisplayedIndex+=1;
                 if(currentCardDisplayedIndex >= allFlashcards.size()){
@@ -151,11 +345,31 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 currentCard = allFlashcards.get(currentCardDisplayedIndex);
-                q.setText(currentCard.getQuestion());
-                a1.setText(currentCard.getWrongAnswer1());
-                a2.setText(currentCard.getWrongAnswer2());
-                a3.setText(currentCard.getAnswer());
-                a4.setText(currentCard.getWrongAnswer3());
+
+                q.startAnimation(slideLeft);
+
+                if(a1.getVisibility() == View.VISIBLE){
+                    a1.animate()
+                        .rotationY(90)
+                        .setDuration(200)
+                        .start();}
+                if(a2.getVisibility() == View.VISIBLE){
+                    a2.animate()
+                        .rotationY(90)
+                        .setDuration(200)
+                        .start();}
+                if(a3.getVisibility() == View.VISIBLE){
+                    a3.animate()
+                        .rotationY(90)
+                        .setDuration(200)
+                        .start();}
+                if(a4.getVisibility() == View.VISIBLE){
+                    a4.animate()
+                        .rotationY(90)
+                        .setDuration(200)
+                        .start();}
+
+
             }
         });
         delete.setOnClickListener(new View.OnClickListener() {
@@ -183,12 +397,15 @@ public class MainActivity extends AppCompatActivity {
                     a3.setText(currentCard.getAnswer());
                     a4.setText(currentCard.getWrongAnswer3());
                     }
+                answered[0] = false;
 
             }
         });
+
         editActivity.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 String passQ = q.getText().toString();
                 String passA = a3.getText().toString();
                 String w1 = a1.getText().toString();
@@ -202,6 +419,7 @@ public class MainActivity extends AppCompatActivity {
                 isEdit = true;
                 nextActivity.putExtra("editStatus",isEdit);
                 MainActivity.this.startActivityForResult(nextActivity, 100);
+                overridePendingTransition(R.anim.slide_in_right,R.anim.slide_right);
 
             }
         });
@@ -269,5 +487,7 @@ public class MainActivity extends AppCompatActivity {
         int result = min + (int)(Math.random() * max);
         return result;
     }
+
+
 
 }

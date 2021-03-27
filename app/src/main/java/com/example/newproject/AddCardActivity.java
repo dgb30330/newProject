@@ -53,6 +53,12 @@ public class AddCardActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+                if(editStatus) {
+                    overridePendingTransition(R.anim.slide_in_left,R.anim.slide_left);
+                }
+                else{
+                    overridePendingTransition(R.anim.slide_in_right, R.anim.slide_right);
+                }
 
             }
         });
@@ -78,6 +84,12 @@ public class AddCardActivity extends AppCompatActivity {
                     changeMain.putExtra("editReturn",editStatus);
                     setResult(RESULT_OK, changeMain);
                     finish();
+                    if(editStatus) {
+                        overridePendingTransition(R.anim.slide_in_left,R.anim.slide_left);
+                    }
+                    else{
+                        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_right);
+                    }
                 }
             }
         });
